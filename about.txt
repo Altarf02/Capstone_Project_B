@@ -1,0 +1,7 @@
+========== Part 1: Capture sensor data ===========
+Hardware: BeagleBone Green
+Programming Language: Python 3
+
+========== Part 2: Classification (Supervised learning) ==========
+ML Library: SciKit Learn
+Architecture: Multi Layered Perceptron
