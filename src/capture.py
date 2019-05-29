@@ -18,6 +18,35 @@ def read_live_ppg(no_of_samples, capture_duration):
 
     return temp
 
+def print_live_ppg():
+    
+    # open device file
+    fd = open("/sys/bus/iio/devices/iio:device0/in_voltage0_raw", "r")
+    
+    while True:
+        print(fd.read())
+        fd.seek(0, 0)
+        time.sleep(15/60)
+
+def capture_raw_ppg():
+
+    ppg_raw_csv_file = "../data/csv/ppg_raw.csv"
+
+    capture_duration = 10
+    no_of_samples = 500
+
+    print("Place your finger on the PPG sensor")
+    time.sleep(1)
+
+    print("Capturing...")
+    ppg_data = read_live_ppg(no_of_samples, capture_duration)
+
+    with open(ppg_raw_csv_file, mode = "a") as ppg_raw_csv:
+        ppg_raw_csv_writer = csv.writer(ppg_raw_csv)
+        ppg_raw_csv_writer.writerow(ppg_data)
+
+    print("Done")
+
 def capture_ppg():
 
     # list of files to be handled
@@ -109,7 +138,7 @@ def capture_mpu6050():
 
 
 def main():
-    capture_ppg()
+    print_live_ppg()
     
 
 if __name__ == '__main__':

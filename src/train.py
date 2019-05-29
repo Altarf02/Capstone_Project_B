@@ -11,7 +11,7 @@ def live_test(mlp_obj: MLPClassifier):
     
     #sampling_rate = 15
     capture_duration = 5.0
-    no_of_samples = 100 * capture_duration
+    no_of_samples = int(100 * capture_duration)
     
     while True:
         temp_data = read_live_ppg(no_of_samples, capture_duration)
